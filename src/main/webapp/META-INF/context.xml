@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<Context>
+  <Resource name="jdbc/PostgresDS"
+	url="jdbc:postgresql://localhost:5432/fitnessappdb"
+	driverClassName="org.postgresql.Driver"
+	auth="Container"
+	type="javax.sql.DataSource"
+	username="postgres"
+	password="kamal"/>
+</Context>

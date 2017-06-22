@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Inlogscherm - trainapp</title>
+<link href="stylesheet/login.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="login-page">
+	<div class="form">
+		<form class="register-form">
+			<input id="firstname" type="text" placeholder="voornaam" /> 
+			<input id="lastname" type="text" placeholder="achternaam" /> 
+			<input id="username" type="text" placeholder="gebruikersnaam" /> 
+			<input id="password" type="password" placeholder="wachtwoord" /> 
+			<button id="registerButton">create</button>
+			<p class="message">
+				Already registered? <a href="#">Sign In</a>
+			</p>
+		</form>
+		<form class="login-form">
+			<input id="un" type="text" placeholder="gebruikersnaam" /> 
+			<input id="pw" type="password" placeholder="wachtwoord" />
+			<button id="loginButton" type="button">login</button>
+			<p class="message">
+				Nog geen account? <a href="#">Maak een account aan</a>
+			</p>
+		</form>
+	</div>
+</div>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="javascript/login.js"></script>
+</body>
+</html>

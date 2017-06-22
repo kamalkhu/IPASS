@@ -2,7 +2,7 @@
 <!DOCTYPE xml>
 <Context>
   <Resource name="jdbc/PostgresDS"
-	url="jdbc:postgresql://localhost:5432/fitnessappdb"
+	url="jdbc:postgresql://localhost:5432/d2k8oj2190e50n"
 	driverClassName="org.postgresql.Driver"
 	auth="Container"
 	type="javax.sql.DataSource"

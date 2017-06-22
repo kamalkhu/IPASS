@@ -14,7 +14,7 @@ public class ClientDAO extends BaseDAO {
 	private ArrayList<Client> selectClients(String query) {
 		ArrayList<Client> client = new ArrayList<Client>();
 
-		try (Connection con = super.connect()) {
+		try (Connection con = super.getConnection()) {
 			Statement stmt = con.createStatement();
 			ResultSet dbResultSet = stmt.executeQuery(query);
 			while (dbResultSet.next()) {
@@ -38,7 +38,7 @@ public class ClientDAO extends BaseDAO {
 	// Get client by id from db
 	public Client getClientById(int id) {
 		Client c = new Client();
-		try (Connection con = super.connect()) {
+		try (Connection con = super.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement("SELECT * FROM Client WHERE id=?");
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
@@ -56,7 +56,7 @@ public class ClientDAO extends BaseDAO {
 	// Insert client to db
 	public void insertClient(String fn, String ln) {
 		String query = "INSERT INTO Client(firstname, lastname) VALUES('" + fn + "','" + ln + "')";
-		try (Connection con = super.connect()) {
+		try (Connection con = super.getConnection()) {
 			Statement stmt = con.createStatement();
 			stmt.execute(query);
 
@@ -68,7 +68,7 @@ public class ClientDAO extends BaseDAO {
 	// Update client from db
 	public void updateClient(int id, String fn, String ln) {
 		String query = "UPDATE Client SET firstname = '" + fn + "', lastname = '" + ln + "' WHERE id = " + id;
-		try (Connection con = super.connect()) {
+		try (Connection con = super.getConnection()) {
 			Statement stmt = con.createStatement();
 			stmt.execute(query);
 		} catch (SQLException sqle) {
@@ -79,7 +79,7 @@ public class ClientDAO extends BaseDAO {
 	// Delete client from db
 	public void deleteClient(int id) {
 		String query = "DELETE FROM Client WHERE id = " + id;
-		try (Connection con = super.connect()) {
+		try (Connection con = super.getConnection()) {
 			Statement stmt = con.createStatement();
 			stmt.execute(query);
 		} catch (SQLException sqle) {

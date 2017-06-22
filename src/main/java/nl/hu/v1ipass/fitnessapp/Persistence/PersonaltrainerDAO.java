@@ -14,7 +14,7 @@ public class PersonaltrainerDAO extends BaseDAO {
 	private ArrayList<Personaltrainer> selectPersonaltrainers(String query) {
 		ArrayList<Personaltrainer> personaltrainer = new ArrayList<Personaltrainer>();
 
-		try (Connection con = super.connect()) {
+		try (Connection con = super.getConnection()) {
 			Statement stmt = con.createStatement();
 			ResultSet dbResultSet = stmt.executeQuery(query);
 			while (dbResultSet.next()) {
@@ -40,7 +40,7 @@ public class PersonaltrainerDAO extends BaseDAO {
 	// Get personaltrainers by id from db
 	public Personaltrainer getPersonaltrainerById(int id) {
 		Personaltrainer p = new Personaltrainer();
-		try (Connection con = super.connect()) {
+		try (Connection con = super.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement("SELECT * FROM personaltrainer WHERE id=?");
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
@@ -60,7 +60,7 @@ public class PersonaltrainerDAO extends BaseDAO {
 	// Insert personaltrainers to db
 	public void insertPersonaltrainer(String fn, String ln, String un, String pw) {
 		String query = "INSERT INTO personaltrainer(firstname, lastname, username, password) VALUES('" + fn + "','" + ln + "','" + un + "','" + pw + "')";
-		try (Connection con = super.connect()) {
+		try (Connection con = super.getConnection()) {
 			Statement stmt = con.createStatement();
 			stmt.execute(query);
 
@@ -72,7 +72,7 @@ public class PersonaltrainerDAO extends BaseDAO {
 	// Update personaltrainers from db
 	public void updatePersonaltrainer(int id, String fn, String ln, String un, String pw) {
 		String query = "UPDATE personaltrainer SET firstname = '" + fn + "', lastname = '" + ln + "', username = '" + un + "', password = '" + pw + "' WHERE id = " + id;
-		try (Connection con = super.connect()) {
+		try (Connection con = super.getConnection()) {
 			Statement stmt = con.createStatement();
 			stmt.execute(query);
 		} catch (SQLException sqle) {
@@ -83,7 +83,7 @@ public class PersonaltrainerDAO extends BaseDAO {
 	// Delete client from db
 	public void deletePersonaltrainer(int id) {
 		String query = "DELETE FROM personaltrainer WHERE id = " + id;
-		try (Connection con = super.connect()) {
+		try (Connection con = super.getConnection()) {
 			Statement stmt = con.createStatement();
 			stmt.execute(query);
 		} catch (SQLException sqle) {

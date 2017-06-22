@@ -14,7 +14,7 @@ public class ActivityDAO extends BaseDAO {
 	private ArrayList<Activity> selectActivities(String query) {
 		ArrayList<Activity> activity = new ArrayList<Activity>();
 
-		try (Connection con = super.connect()) {
+		try (Connection con = super.getConnection()) {
 			Statement stmt = con.createStatement();
 			ResultSet dbResultSet = stmt.executeQuery(query);
 			while (dbResultSet.next()) {
@@ -41,7 +41,7 @@ public class ActivityDAO extends BaseDAO {
 	// Get activity by id from db
 	public Activity getActivityById(int id) {
 		Activity c = new Activity();
-		try (Connection con = super.connect()) {
+		try (Connection con = super.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement("SELECT * FROM Activity WHERE id=?");
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
@@ -64,7 +64,7 @@ public class ActivityDAO extends BaseDAO {
 	public void insertActivity(String sd, String st, int du, String tp, int cid, int pid) {
 		String query = "INSERT INTO Activity(Startdate, Starttime, Duration, Type, Clientid, Personaltrainerid) VALUES('" + sd + "','" + st
 				+ "','" + du + "','" + tp + "'," + cid + "," + pid + ")";
-		try (Connection con = super.connect()) {
+		try (Connection con = super.getConnection()) {
 			Statement stmt = con.createStatement();
 			stmt.execute(query);
 
@@ -77,7 +77,7 @@ public class ActivityDAO extends BaseDAO {
 	public void updateActivity(int id, String sd, String st, int du, String tp, int cid, int pid) {
 		String query = "UPDATE Activity SET startdate = '" + sd + "', starttime = '" + st + "', duration= " + du
 				+ ", type= '" + tp + "', clientid= " + cid + ", personaltrainerid= " + pid +" WHERE id = " + id;
-		try (Connection con = super.connect()) {
+		try (Connection con = super.getConnection()) {
 			Statement stmt = con.createStatement();
 			stmt.execute(query);
 		} catch (SQLException sqle) {
@@ -88,7 +88,7 @@ public class ActivityDAO extends BaseDAO {
 	// Delete client from db
 	public void deleteActivity(int id) {
 		String query = "DELETE FROM Activity WHERE id = " + id;
-		try (Connection con = super.connect()) {
+		try (Connection con = super.getConnection()) {
 			Statement stmt = con.createStatement();
 			stmt.execute(query);
 		} catch (SQLException sqle) {
